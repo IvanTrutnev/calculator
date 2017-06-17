@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <title>Calculation</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script src="app.js"></script>
+    <script src="calc-controller.js"></script>
+</head>
+<body ng-app="calculator" ng-controller="calcCtrl">
+<table>
+    <tr ng-repeat="(key, value) in productData[index]">
+        <td ng-if="$first"> {{key}} </td>
+        <td ng-if="$first">
+            <select ng-init="product = productData[index]" ng-model="product" ng-options="item as item.name for (idx,item) in productData" ng-click="test(product)">
+            </select>
+           <!-- <select name="productSelect" ng-model="productData[0].name" ng-change="test($index);">
+                <option ng-repeat="(key, value) in productData track by $index">
+                    {{productData[index].name}}
+                </option>
+            </select>-->
+        </td>
+        <td ng-if="!$first"> {{key}} </td>
+        <td ng-if="!$first" contenteditable="true">{{ value }}</td>
+    </tr>
+    <tr>
+        <td>result</td>
+        <td></td>
+    </tr>
+</table>
+</body>
+</html>
