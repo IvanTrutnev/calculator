@@ -1,0 +1,20 @@
+{
+  "name": "calculation",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "IvanTrutnev <trutnev_1996@mail.ru>"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.6.4"
+  }
+}
