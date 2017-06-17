@@ -3,17 +3,36 @@
 angular.module('calculator.calc',[])
     .controller('calcCtrl',['$scope','dataService',function($scope,dataService) {
         $scope.productData = dataService.database;
+        $scope.index = 0;
+        $scope.tableFlag = false;
 
-        $scope.index = 2;
+        $scope.test = function() {
+            console.log('test');
+        };
 
+        $scope.getFullPurchasePrice = function(index) {
+            let commision = 0;
+            let currentProduct = dataService.database[index];
+            $scope.fullPurhcasePrice = (currentProduct.m_3 * currentProduct.push_price*(100-currentProduct.deffect)/100
+            + currentProduct.m_3* currentProduct.deffect_cost*currentProduct.deffect/100
+            + currentProduct.logistic_lt
+            + currentProduct.logistic_lt * currentProduct.deffect).toFixed(2);
+            $scope.priceOfVolume = ($scope.fullPurhcasePrice / currentProduct.m_3).toFixed(2);
+        };
 
-        $scope.test = function(idx) {
+        /*$scope.getPriceOfVolume = function(index) {
+            $scope.priceOfVolume = $scope.fullPurhcasePrice / dataService.database[index].m_3;
+        };*/
+
+        $scope.changeProduct = function(idx) {
             $scope.index = $scope.productData.indexOf(idx);
+            $scope.tableFlag = true;
+            $scope.getFullPurchasePrice($scope.index);
         }
     }
 ])
 .factory('dataService',
-    ['$http', function($http) {
+    [function() {
         return {
             database: [
                 {
@@ -28,7 +47,7 @@ angular.module('calculator.calc',[])
                     push_price: 125,
                     deffect: 0,
                     deffect_cost: 0,
-                    logistci_lt: 500
+                    logistic_lt: 500
                 },
                 {
                 name: '75x75x4000 | brusas',
@@ -42,7 +61,7 @@ angular.module('calculator.calc',[])
                     push_price: 125,
                     deffect: 0,
                     deffect_cost: 0,
-                    logistci_lt: 500
+                    logistic_lt: 500
                 },
                 {
                     name: '16x100x4000 | lentele',
@@ -56,7 +75,7 @@ angular.module('calculator.calc',[])
                     push_price: 130,
                     deffect: 0,
                     deffect_cost: 0,
-                    logistci_lt: 500
+                    logistic_lt: 500
                 },
                 {
                     name: '19x100x4000 | brusas',
@@ -70,7 +89,7 @@ angular.module('calculator.calc',[])
                     push_price: 95,
                     deffect: 0,
                     deffect_cost: 0,
-                    logistci_lt: 450
+                    logistic_lt: 450
                 },
                 {
                     name: '25x100x4000 | brusas',
@@ -84,8 +103,8 @@ angular.module('calculator.calc',[])
                     push_price: 95,
                     deffect: 0,
                     deffect_cost: 0,
-                    logistci_lt: 450
+                    logistic_lt: 450
                 }
             ]
         };
-    }]);
+    }])

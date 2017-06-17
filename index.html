@@ -14,20 +14,24 @@
     <tr ng-repeat="(key, value) in productData[index]">
         <td ng-if="$first"> {{key}} </td>
         <td ng-if="$first">
-            <select ng-init="product = productData[index]" ng-model="product" ng-options="item as item.name for (idx,item) in productData" ng-click="test(product)">
+            <select ng-init="product = productData[index]" ng-model="product" ng-options="item as item.name for item in productData" ng-change="changeProduct(product);">
             </select>
-           <!-- <select name="productSelect" ng-model="productData[0].name" ng-change="test($index);">
-                <option ng-repeat="(key, value) in productData track by $index">
-                    {{productData[index].name}}
-                </option>
-            </select>-->
         </td>
         <td ng-if="!$first"> {{key}} </td>
-        <td ng-if="!$first" contenteditable="true">{{ value }}</td>
+        <td ng-if="!$first"><div ng-if="tableFlag" contenteditable="true">
+            {{text}}
+            {{value}}
+        </div>
+        </td>
     </tr>
     <tr>
-        <td>result</td>
-        <td></td>
+        <td>Полная закупочная цена на м3</td>
+        <td>{{priceOfVolume}}</td>
+
+    </tr>
+    <tr>
+        <td>Полная закупочная цена</td>
+        <td>{{fullPurhcasePrice}}</td>
     </tr>
 </table>
 </body>
