@@ -5,3 +5,11 @@ table, th , td {
     border-collapse: collapse;
     padding: 5px;
 }
+
+input {
+    border: none;
+    width: 100px;
+}
+[contenteditable="true"] {
+    width: 100px;
+}

@@ -12,22 +12,19 @@
 <body ng-app="calculator" ng-controller="calcCtrl">
 <table>
     <tr ng-repeat="(key, value) in productData[index]">
-        <td ng-if="$first"> {{key}} </td>
+        <td ng-if="$first">{{rows[key]}}</td>
         <td ng-if="$first">
-            <select ng-init="product = productData[index]" ng-model="product" ng-options="item as item.name for item in productData" ng-change="changeProduct(product);">
+            <select ng-model="product" ng-options="item as item.name for item in productData" ng-change="changeProduct(product);">
             </select>
         </td>
-        <td ng-if="!$first"> {{key}} </td>
-        <td ng-if="!$first"><div ng-if="tableFlag" contenteditable="true">
-            {{text}}
-            {{value}}
-        </div>
+        <td ng-if="!$first"> {{rows[key]}} </td>
+        <td ng-if="!$first">
+            <input ng-if="tableFlag" ng-model="value" ng-change="changeValue(key,value,index); getFullPurchasePrice(index);">
         </td>
     </tr>
     <tr>
         <td>Полная закупочная цена на м3</td>
         <td>{{priceOfVolume}}</td>
-
     </tr>
     <tr>
         <td>Полная закупочная цена</td>
