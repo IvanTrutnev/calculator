@@ -17,18 +17,24 @@
             <select ng-model="product" ng-options="item as item.name for item in productData" ng-change="changeProduct(product);">
             </select>
         </td>
-        <td ng-if="!$first"> {{rows[key]}} </td>
+        <td ng-if="$first">
+            ТxШxД | тип
+        </td>
+        <td ng-if="!$first"> {{rows[key][0]}} </td>
         <td ng-if="!$first">
             <input ng-if="tableFlag" ng-model="value" ng-change="changeValue(key,value,index); getFullPurchasePrice(index);">
         </td>
+        <td ng-if="!$first"> {{rows[key][1]}} </td>
     </tr>
     <tr>
         <td>Полная закупочная цена на м3</td>
         <td>{{priceOfVolume}}</td>
+        <td>EUR/m3</td>
     </tr>
     <tr>
         <td>Полная закупочная цена</td>
         <td>{{fullPurhcasePrice}}</td>
+        <td>EUR</td>
     </tr>
 </table>
 </body>

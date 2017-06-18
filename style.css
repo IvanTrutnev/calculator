@@ -4,12 +4,10 @@ table, th , td {
     border: 1px solid grey;
     border-collapse: collapse;
     padding: 5px;
+    outline: none;
 }
 
 input {
     border: none;
-    width: 100px;
-}
-[contenteditable="true"] {
     width: 100px;
 }
